@@ -29,8 +29,9 @@ def check_resorce(url, expected_code):
         if response.getcode() != expected_code:
             raise Exception(get_error_message(url, response.getcode(), expected_code))
 
-#Main
-def main():
+
+def lambda_handler(event, context):
+    # This function will be called by AWS Lambda service internally
     resources_str = os.getenv('RESOURCE_MONITOR_RESOURCES')
     if resources_str == None:
         print('ConfigurationError: no resources were supplied')
@@ -51,4 +52,3 @@ def main():
         else:
             print(resource['url'], ' is working properly')
 
-main()
